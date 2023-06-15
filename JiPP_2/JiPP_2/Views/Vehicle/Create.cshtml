@@ -1,0 +1,59 @@
+﻿@model JiPP_2.Models.VehicleModel
+
+@{
+    ViewData["Title"] = "Dodaj samochód";
+    var vendors = (List<DictionaryDetailModel>)ViewData["Vendors"];
+    var transmissions = (List<DictionaryDetailModel>)ViewData["Transmissions"];
+}
+
+<h4>Dodaj samochód</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Create">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="Vendor" class="control-label"></label>
+                <select asp-for="VendorDicId" class="form-control" asp-items="ViewBag.VendorDicId">
+                    <option value="">-- Wybierz markę --</option>
+                </select>
+                <span asp-validation-for="VendorDicId" class="text-danger" />
+            </div>
+            <div class="form-group">
+                <label asp-for="Model" class="control-label"></label>
+                <input asp-for="Model" class="form-control" />
+                <span asp-validation-for="Model" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="ProductionYear" class="control-label"></label>
+                <input asp-for="ProductionYear" class="form-control" />
+                <span asp-validation-for="ProductionYear" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Transmission" class="control-label"></label>
+                <select asp-for="TransmissionDicId" class="form-control" asp-items="ViewBag.TransmissionDicId">
+                    <option value="">-- Wybierz rodzaj skrzyni --</option>
+                </select>
+                <span asp-validation-for="TransmissionDicId" class="text-danger" />
+            </div>
+            <div class="form-group">
+                <label asp-for="Rate" class="control-label"></label>
+                <input inputmode="decimal" required name="Rate" class="form-control" value="0" />
+                <span asp-validation-for="Rate" class="text-danger"></span>
+            </div>
+@*            <div class="form-group form-check">
+                <label class="form-check-label">
+                    <input class="form-check-input" asp-for="isRented" type="hidde" /> @Html.DisplayNameFor(model => model.isRented)
+                </label>
+            </div>*@
+            <div class="form-group">
+                <input type="submit" value="Zapisz" class="btn btn-primary" />
+                <a asp-action="Index" class="btn btn-info">Powrót do listy</a>
+            </div>
+        </form>
+    </div>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

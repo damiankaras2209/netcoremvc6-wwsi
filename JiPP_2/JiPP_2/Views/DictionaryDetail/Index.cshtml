@@ -1,0 +1,41 @@
+﻿@using static JiPP_2.Models.DictionaryModel;
+@model IEnumerable<JiPP_2.Models.DictionaryDetailModel>
+
+@{
+    ViewData["Title"] = ViewData["DictionaryName"];
+}
+
+<h1>@ViewData["DictionaryName"]</h1>
+
+<p>
+    <a asp-action="Create" asp-route-type="@ViewData["DictionaryId"]" class="btn btn-success btn-sm my-3">Dodaj</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Name)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.isActive)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Name)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.isActive)
+            </td>
+                <td class="text-right">
+                <a asp-action="Edit" asp-route-id="@item.Id" class="btn btn-primary btn-sm"><span class="glyphicon glyphicon-pencil"></span> Edycja</a>
+                <a asp-action="Delete" asp-route-id="@item.Id" class="btn btn-danger btn-sm"><span class="glyphicon glyphicon-remove"></span> Usuń</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>

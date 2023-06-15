@@ -1,0 +1,48 @@
+﻿@model JiPP_2.Models.RentModel
+
+@{
+    ViewData["Title"] = "Anuluj wypozyczenie";
+}
+
+<h3>Potwierdzasz anulowanie wypożyczenia?</h3>
+<div>
+    <hr />
+    <dl class="row">
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.Vehicle)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.Vehicle.Vendor.Name) @Html.DisplayFor(model => model.Vehicle.Model)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.Customer)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.Customer.Name) @Html.DisplayFor(model => model.Customer.Surname)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.StartDate)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.StartDate)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.EndDate)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.EndDate)
+        </dd>
+    </dl>
+    
+    <form asp-action="Cancel">
+        <input type="hidden" asp-for="Id" />
+        <input type="hidden" asp-for="VehicleId" class="form-control">
+        <input type="hidden" asp-for="CustomerId" class="form-control">
+        <input type="hidden" asp-for="StartDate" class="form-control" />
+        <input type="hidden" asp-for="EndDate" class="form-control" />
+        <input type="hidden" asp-for="ReturnDate" class="form-control" />
+        <input type="hidden" asp-for="Status" class="form-control" />
+        <input type="submit" value="Potwierdź" class="btn btn-danger" />
+        <a asp-action="Index" class="btn btn-info">Powrót do listy</a>
+    </form>
+</div>

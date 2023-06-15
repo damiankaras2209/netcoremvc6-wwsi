@@ -1,0 +1,81 @@
+﻿@model IEnumerable<JiPP_2.Models.RentModel>
+
+@{
+    ViewData["Title"] = "Wypożyczenia";
+    var labelClass = "";
+}
+
+<h1>Wypożyczenia</h1>
+<p></p>
+<p>
+    <a asp-action="Create" class="btn btn-success btn-sm my-3">Dodaj wypożyczenie</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Vehicle) 
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Customer)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.StartDate)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.EndDate)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.ReturnDate)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Status)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Cost)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Vehicle.Vendor.Name) @Html.DisplayFor(modelItem => item.Vehicle.Model)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Customer.Name) @Html.DisplayFor(modelItem => item.Customer.Surname)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.StartDate)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.EndDate)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ReturnDate)
+            </td>
+            <td>
+                @switch(item.Status)
+                {
+                    case RentModel.RentStatus.ACTIVE: labelClass = "label label-warning";break;
+                    case RentModel.RentStatus.ENDED: labelClass = "label label-success"; break;
+                    case RentModel.RentStatus.CANCELLED: labelClass = "label label-danger"; break;
+                }
+                <span class="@labelClass">@RentModel.RentStatusStrings[(int)item.Status - 1]</span>
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Cost)
+            </td>
+                <td class="text-right">
+                    @*<a asp-action="Details" asp-route-id="@item.Id" class="btn btn-info" class="btn btn-secondary btn-sm"><span class="glyphicon glyphicon-pencil"></span> Szczegóły</a>*@
+                @if (item.Status == RentModel.RentStatus.ACTIVE)
+                {
+                        <a asp-action="Return" asp-route-id="@item.Id" class="btn btn-warning btn-sm"><span class="glyphicon glyphicon-th-list"></span> Zwrócono</a>
+                        <a asp-action="Cancel" asp-route-id="@item.Id" class="btn btn-danger btn-sm"><span class="glyphicon glyphicon-remove"></span> Anuluj</a>
+                }
+                </td>
+        </tr>
+}
+    </tbody>
+</table>

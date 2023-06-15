@@ -1,0 +1,65 @@
+﻿@model IEnumerable<JiPP_2.Models.VehicleModel>
+
+@{
+    ViewData["Title"] = "Samochody";
+}
+
+<h1>Samochody</h1>
+
+<p>
+    <a asp-action="Create" class="btn btn-success btn-sm my-3">Dodaj samochód</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Vendor)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Model)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.ProductionYear)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Transmission)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Rate)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.isRented)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Vendor.Name)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Model)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ProductionYear)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Transmission.Name)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Rate)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.isRented)
+            </td>
+            <td class="text-right">
+                <a asp-action="Edit" asp-route-id="@item.Id" class="btn btn-primary btn-sm"><span class="glyphicon glyphicon-pencil"></span> Edycja</a>
+                <a asp-action="Details" asp-route-id="@item.Id" class="btn btn-secondary btn-sm"><span class="glyphicon glyphicon-pencil"></span> Szczegóły</a>
+                <a asp-action="Delete" asp-route-id="@item.Id" class="btn btn-danger btn-sm"><span class="glyphicon glyphicon-remove"></span> Usuń</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>

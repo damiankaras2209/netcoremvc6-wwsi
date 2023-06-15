@@ -1,0 +1,51 @@
+﻿@model JiPP_2.Models.RentModel
+
+@{
+    ViewData["Title"] = "Nowe wypożyczenie";
+}
+
+<h3>Wprowadź dane wypożycznia</h3>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Create">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="Vehicle" class="control-label"></label>
+                <select asp-for="VehicleId" class="form-control" asp-items="ViewBag.VehicleId"></select>
+                <span asp-validation-for="VehicleId" class="text-danger" />
+            </div>
+            <div class="form-group">
+                <label asp-for="Customer" class="control-label"></label>
+                <select asp-for="CustomerId" class ="form-control" asp-items="ViewBag.CustomerId"></select>
+            </div>
+            <div class="form-group">
+                <label asp-for="StartDate" class="control-label"></label>
+                <input asp-for="StartDate" class="form-control" />
+                <span asp-validation-for="StartDate" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="EndDate" class="control-label"></label>
+                <input asp-for="EndDate" class="form-control" />
+                <span asp-validation-for="EndDate" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input asp-for="Status" type="hidden" class="form-control" value="@((int)(RentModel.RentStatus.ACTIVE))">
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Wypożycz" class="btn btn-primary" />
+                <a asp-action="Index" class="btn btn-info">Powrót do listy</a>
+            </div>
+            @if(ViewBag.Error == true)
+            {
+                <div class="alert alert-danger" role="alert">
+                    <span>Samochód jest już wypożyczony w tym czasie</span>
+                </div>
+            }
+        </form>
+    </div>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}
