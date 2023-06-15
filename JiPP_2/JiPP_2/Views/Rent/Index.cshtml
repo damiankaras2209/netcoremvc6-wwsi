@@ -71,7 +71,7 @@
                     @*<a asp-action="Details" asp-route-id="@item.Id" class="btn btn-info" class="btn btn-secondary btn-sm"><span class="glyphicon glyphicon-list"></span> Szczegóły</a>*@
                 @if (item.Status == RentModel.RentStatus.ACTIVE)
                 {
-                        <a asp-action="Return" asp-route-id="@item.Id" class="btn btn-warning btn-sm"><span class="glyphicon glyphicon-th-list"></span> Zwrócono</a>
+                        <a asp-action="Return" asp-route-id="@item.Id" class="btn btn-warning btn-sm"><span class="glyphicon glyphicon-check"></span> Zwrócono</a>
                         <a asp-action="Cancel" asp-route-id="@item.Id" class="btn btn-danger btn-sm"><span class="glyphicon glyphicon-remove"></span> Anuluj</a>
                 }
                 </td>
