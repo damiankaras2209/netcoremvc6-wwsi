@@ -3,8 +3,10 @@
     "",
     "\\JiPP_2",
     "\\JiPP_2\\JiPP_2",
-    "\\JiPP_2\\JiPP_2\\Repositories"
+    "\\JiPP_2\\JiPP_2\\Repositories",
+    "\\Workshop",
+    "\\Workshop\\Workshop"
   ],
-  "SelectedNode": "\\JiPP_2\\JiPP_2\\Repositories\\RentManager.cs",
+  "SelectedNode": "\\Workshop\\Workshop\\Program.cs",
   "PreviewInSolutionExplorer": false
 }
